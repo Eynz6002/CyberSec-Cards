@@ -119,6 +119,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &168736010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168736012}
+  - component: {fileID: 168736011}
+  m_Layer: 0
+  m_Name: CTRL_Lootbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &168736011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168736010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a2d5a42b77181a48c64c4dc0567e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gerenciadordelootbox
+  textoResultado: {fileID: 1507937864}
+  itensDisponiveis:
+  - card1
+  - card2
+  - card3
+--- !u!4 &168736012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168736010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.35544, y: -1.07798, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501684840
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -45, y: -125}
+  m_AnchoredPosition: {x: -45, y: -145}
   m_SizeDelta: {x: 90, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &501684842
@@ -201,7 +250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 501684843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 168736011}
+        m_TargetAssemblyTypeName: GerenciadorDeLootbox, Assembly-CSharp
+        m_MethodName: AbrirCaixa
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &501684843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +313,7 @@ GameObject:
   - component: {fileID: 512532434}
   - component: {fileID: 512532433}
   m_Layer: 5
-  m_Name: "Texto do Bot\xE3o de Partida"
+  m_Name: "UI_Bot\xE3oPartida"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +620,7 @@ GameObject:
   - component: {fileID: 1319632519}
   - component: {fileID: 1319632518}
   m_Layer: 5
-  m_Name: "Texto do Bot\xE3o de Abrir"
+  m_Name: "UI_Bot\xE3oAbrir"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,26 +754,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1428653415}
-  - component: {fileID: 1428653414}
+  - component: {fileID: 1428653416}
   m_Layer: 0
-  m_Name: ControladorDeCenas
+  m_Name: CTRL_Telas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1428653414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428653413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15eb4e4a3823087ac9c996ed728d23b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GerenciadordeTelas
 --- !u!4 &1428653415
 Transform:
   m_ObjectHideFlags: 0
@@ -728,6 +777,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428653416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428653413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eb4e4a3823087ac9c996ed728d23b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GerenciadordeTelas
 --- !u!1 &1461235469
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +938,7 @@ GameObject:
   - component: {fileID: 1507937865}
   - component: {fileID: 1507937864}
   m_Layer: 5
-  m_Name: Resultado da Lootbox
+  m_Name: UI_ResultadoLootbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,8 +960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: -90}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 45, y: -80}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507937864
 MonoBehaviour:
@@ -922,7 +983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -949,8 +1010,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1014,7 +1075,7 @@ GameObject:
   - component: {fileID: 1743756543}
   - component: {fileID: 1743756542}
   m_Layer: 5
-  m_Name: "T\xEDtulo"
+  m_Name: UI_TituloCena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1036,7 +1097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 20, y: 70}
   m_SizeDelta: {x: 270, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743756542
@@ -1059,7 +1120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Abra Sua LootBOX
+  m_text: Abra Sua Lootbox
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -1280,7 +1341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: -125}
+  m_AnchoredPosition: {x: -225, y: -145}
   m_SizeDelta: {x: 90, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1972146530
@@ -1327,7 +1388,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1428653414}
+      - m_Target: {fileID: 1428653416}
         m_TargetAssemblyTypeName: GerenciadordeTelas, Assembly-CSharp
         m_MethodName: MudarDeCena
         m_Mode: 5
@@ -1478,3 +1539,4 @@ SceneRoots:
   - {fileID: 911975963}
   - {fileID: 569166039}
   - {fileID: 1428653415}
+  - {fileID: 168736012}
