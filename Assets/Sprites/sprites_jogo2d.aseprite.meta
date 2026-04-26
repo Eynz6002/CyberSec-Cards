@@ -149,6 +149,69 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
+  - name: texto_usar
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 305
+      y: 270
+      width: 28
+      height: 9
+    spriteID: f4caf092bf8d4d745966899c31c4e1e4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: texto_descricao
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 303
+      y: 259
+      width: 50
+      height: 9
+    spriteID: 6bce5b98ff670434c9bbd2b239088559
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: texto_cancelar
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 305
+      y: 247
+      width: 47
+      height: 10
+    spriteID: 6a883353837b1444ebbf00d5b93fa577
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   - name: caveira_azul
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -158,10 +221,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 153
+      y: 179
       width: 64
       height: 64
-    spriteID: a82f1d0b6820cdc478de84bb24da6e6a
+    spriteID: adcf2869d912c184f98c89903ca96114
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,10 +242,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 71
-      y: 153
+      y: 179
       width: 64
       height: 64
-    spriteID: cac9744a5d281874e9b028c9fe2f2cd5
+    spriteID: 54cc68eeb15a9394886c0cc45eae4d1c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,10 +263,31 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 138
-      y: 153
+      y: 179
       width: 64
       height: 64
-    spriteID: db6248f22be3b1847ad6db8fcd77fd03
+    spriteID: 92b4b1d8e65b546419533c075e28b3b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: menu
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 277
+      y: 182
+      width: 82
+      height: 50
+    spriteID: 6a8163af0f13ff5429464b99365d71a9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,10 +305,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 86
+      y: 112
       width: 64
       height: 64
-    spriteID: 05f5379f5d8cdb546985515d6cff1e04
+    spriteID: 0690de147e5e0954da572aee3cb2214e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -242,10 +326,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 71
-      y: 86
+      y: 112
       width: 64
       height: 64
-    spriteID: b1eb1899363ecc94787dac9a19734204
+    spriteID: 9daf9c6c3c28c9a4dabbbdfefea58098
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -254,7 +338,70 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: card_deffault
+  - name: sprites_jogo2d_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 274
+      y: 95
+      width: 29
+      height: 48
+    spriteID: f77ed76302b3f2f4b8eada215606b1df
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: sprites_jogo2d_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 307
+      y: 95
+      width: 29
+      height: 48
+    spriteID: 795689b7017a7ae47932eee15c67b4e1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: sprites_jogo2d_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 340
+      y: 95
+      width: 29
+      height: 48
+    spriteID: 2792a4fa9fbbf774a8e128206ca42cce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: card_default
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -263,10 +410,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 95
-      y: 4
+      y: 30
       width: 29
       height: 48
-    spriteID: 16588439a934c624387f5ce0184bd20d
+    spriteID: 2f7ffb28463f903488e5e31a624533d3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,10 +431,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 127
-      y: 4
+      y: 30
       width: 29
       height: 48
-    spriteID: 61cfe7a8600174346a0f187df3eec48f
+    spriteID: d96b767776fed54488c62b2bf321ba29
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -305,10 +452,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 160
-      y: 4
+      y: 30
       width: 29
       height: 48
-    spriteID: f25c7e524efd45d4392e3fdd163ce812
+    spriteID: 2339466e5bf6e0a4fa1fb4dad2a75269
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -317,7 +464,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: card_bloqueio
+  - name: card_stun
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -326,10 +473,73 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 193
-      y: 4
+      y: 30
       width: 29
       height: 48
-    spriteID: 546af66ddc361114497378dacf3d4cb0
+    spriteID: 0a2ff40da6356cb4b8dcedb011e9cba5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: hand
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 248
+      y: 4
+      width: 141
+      height: 72
+    spriteID: c77bdf967af6ef34491b8a12a85765cb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: seta
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 413
+      y: 60
+      width: 5
+      height: 9
+    spriteID: 5a8a1f5a2c693ef41a1556899bc26f8c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: seta_background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 413
+      y: 49
+      width: 5
+      height: 9
+    spriteID: 5e33a4b3c494a2c42944fecc0ad3f492
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -356,10 +566,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 26
-        y: 11
-        width: 218
-        height: 213
+        x: 398
+        y: 357
+        width: 414
+        height: 275
       spriteId: cdb9d84234b7dcc4db505944d5ea2aae
     linkedCells: []
     tileCells: []
@@ -406,5 +616,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 256, y: 256}
-  previousTextureSize: {x: 256, y: 256}
+  canvasSize: {x: 1000, y: 1000}
+  previousTextureSize: {x: 512, y: 512}
