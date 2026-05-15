@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5bf52f3284f81faa867a22e385fe12, type: 3}
+  m_Name: Alocacar-Swap-de-Emergencial
+  m_EditorClassIdentifier: Assembly-CSharp::CartaDefesa
+  nomeDaCarta: Alocacar Swap de Emergencial
+  descricao: "Usa espa\xE7o do disco r\xEDgido como mem\xF3ria RAM virtual tempor\xE1ria,
+    impedindo que o servidor trave durante picos de processamento."
+  arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
+  pontosDeDefesa: 0
