@@ -33,7 +33,7 @@ public class GerenciadorDeMenu : MonoBehaviour
     {
         if (itemAtual != null)
         {
-            Debug.Log($"Você usou o item: {itemAtual.nomeDoItem}");
+            Debug.Log($"Você usou o item: {itemAtual.dadosDaCarta.nomeDaCarta}");
         }
         FecharMenu();
     }
@@ -42,7 +42,7 @@ public class GerenciadorDeMenu : MonoBehaviour
     {
         if (itemAtual != null)
         {
-            Debug.Log($"Descrição: {itemAtual.descricaoDoItem}");
+            Debug.Log($"Descrição: {itemAtual.dadosDaCarta.descricao}");
         }
     }
 }

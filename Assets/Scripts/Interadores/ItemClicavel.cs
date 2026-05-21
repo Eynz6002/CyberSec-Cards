@@ -4,14 +4,20 @@ using UnityEngine.InputSystem;
 public class ItemClicavel : MonoBehaviour
 {
     [Header("Dados da Carta")]
-    public CartaDados dadosDaCarta;
+    public CartaDados dadosDaCarta; 
 
     private SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        // Atualiza a imagem da carta automaticamente
+    }
+
+    // Atualiza os dados e a arte da carta dinamicamente
+    public void ConfigurarCarta(CartaDados novosDados)
+    {
+        dadosDaCarta = novosDados;
+        
         if (dadosDaCarta != null && dadosDaCarta.arteDaCarta != null)
         {
             spriteRenderer.sprite = dadosDaCarta.arteDaCarta;
@@ -27,7 +33,6 @@ public class ItemClicavel : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject == this.gameObject)
             {
-                // Instancia uma nova carta
                 GerenciadorDeMenu.Instancia.AbrirMenu(this);
             }
         }

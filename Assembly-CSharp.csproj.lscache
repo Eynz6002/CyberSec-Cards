@@ -57,6 +57,7 @@ Assets/Scripts/Cartas/
  CartaDefesa.cs
 Assets/Scripts/Gerenciadores/
  GerenciadorDeLootbox.cs
+ GerenciadorDeMao.cs
  GerenciadorDeMenu.cs
  GerenciadorDeTelas.cs
 Assets/Scripts/Interadores/ItemClicavel.cs
