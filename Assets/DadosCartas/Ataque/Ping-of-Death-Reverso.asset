@@ -16,4 +16,6 @@ MonoBehaviour:
   descricao: "Envia pacotes ICMP malformados de volta para o IP do atacante, causando
     lentid\xE3o na m\xE1quina dele."
   arteDaCarta: {fileID: -6777963853341654856, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  pontosDeAtaque: 1
+  custoScore: 0
+  desbloqueadaPorPadrao: 0
+  pontosDeAtaque: 71

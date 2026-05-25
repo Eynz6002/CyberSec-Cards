@@ -10,7 +10,7 @@ public class CartaProgresso
     public bool desbloqueada = false;
     public int nivel = 0; // Vai de 0 a 3
     public int custoDesbloqueio = 100; // Custo base em Score
-    public int custoUpgrade = 150; 
+    public int custoUpgrade = 150;
 }
 
 public class GerenciadorDeDeckbuilder : MonoBehaviour
@@ -30,7 +30,7 @@ public class GerenciadorDeDeckbuilder : MonoBehaviour
     public TextMeshProUGUI textoNomeDetalhe;
     public TextMeshProUGUI textoDescricaoDetalhe;
     public TextMeshProUGUI textoNivelDetalhe;
-    
+
     // Botoes da interface que você vai ativar/desativar
     public GameObject botaoAdicionar;
     public GameObject botaoRemover;
@@ -38,6 +38,16 @@ public class GerenciadorDeDeckbuilder : MonoBehaviour
     public GameObject botaoUparNivel;
 
     private CartaProgresso cartaSelecionada;
+
+    [Header("Paginação - Slots Fixos da UI")]
+    // No Inspector, arraste o Card1_Baralho, Card2_Baralho e Card3_Baralho para este array (Tamanho 3)
+    public GameObject[] slotsBaralho;
+
+    // Arraste o Card1_Deposito, Card2_Deposito e Card3_Deposito para este array (Tamanho 3)
+    public GameObject[] slotsDeposito;
+
+    private int offsetBaralho = 0;
+    private int offsetDeposito = 0;
 
     void Awake() { Instancia = this; }
 
@@ -130,7 +140,7 @@ public class GerenciadorDeDeckbuilder : MonoBehaviour
 
         // Ativa o botão de Desbloquear apenas se estiver bloqueada
         botaoDesbloquear.SetActive(!cartaSelecionada.desbloqueada);
-        
+
         // Ativa o botão de Upar apenas se estiver desbloqueada e menor que nv 3
         botaoUparNivel.SetActive(cartaSelecionada.desbloqueada && cartaSelecionada.nivel < 3);
 
@@ -143,7 +153,61 @@ public class GerenciadorDeDeckbuilder : MonoBehaviour
     private void AtualizarUI()
     {
         textoScore.text = $"Score: {scoreDoJogador}";
-        // Aqui você chamaria funções para atualizar a lista visual (Instanciar os prefabs nas ScrollViews)
+
+        // 1. Preenche os slots do Baralho
+        for (int i = 0; i < 3; i++) // Seu limite visual é sempre 3
+        {
+            int indexDaLista = offsetBaralho + i;
+            bool temCarta = indexDaLista < cartasNoBaralho.Count;
+
+            // Ativa o GameObject do slot apenas se existir uma carta para aquela posição
+            slotsBaralho[i].SetActive(temCarta);
+
+            if (temCarta)
+            {
+                CartaProgresso cartaAtual = cartasNoBaralho[indexDaLista];
+
+            }
+        }
+
+        // 2. Preenche os slots do Depósito (Coleção Completa)
+        for (int i = 0; i < 3; i++)
+        {
+            int indexDaLista = offsetDeposito + i;
+            bool temCarta = indexDaLista < colecaoCompleta.Count;
+
+            slotsDeposito[i].SetActive(temCarta);
+
+            if (temCarta)
+            {
+                CartaProgresso cartaAtual = colecaoCompleta[indexDaLista];
+            }
+        }
+    }
+
+    public void AdicionarDoDeposito(int indiceDoSlotVisivel)
+    {
+        // Calcula qual carta da coleção completa está aparecendo neste slot específico
+        int indexDaLista = offsetDeposito + indiceDoSlotVisivel;
+
+        // Prevenção de erro caso clique em um slot vazio
+        if (indexDaLista >= colecaoCompleta.Count) return;
+
+        CartaProgresso cartaClicada = colecaoCompleta[indexDaLista];
+
+        // Verifica se a carta está desbloqueada e se já não está no baralho
+        if (cartaClicada.desbloqueada && !cartasNoBaralho.Contains(cartaClicada))
+        {
+            if (cartasNoBaralho.Count < limiteDoBaralho)
+            {
+                cartasNoBaralho.Add(cartaClicada);
+                AtualizarUI();
+            }
+            else
+            {
+                Debug.Log("Baralho cheio! Limite de 6 cartas atingido.");
+            }
+        }
     }
 }
 

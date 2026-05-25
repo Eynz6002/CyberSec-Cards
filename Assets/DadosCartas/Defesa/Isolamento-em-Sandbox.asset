@@ -16,4 +16,6 @@ MonoBehaviour:
   descricao: Move os processos vitais do servidor para um ambiente isolado e criptografado,
     mitigando severamente qualquer dano de vazamento.
   arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  pontosDeDefesa: 0
+  custoScore: 0
+  desbloqueadaPorPadrao: 0
+  pontosDeDefesa: 4
