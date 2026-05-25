@@ -15,7 +15,7 @@ public class GerenciadorDeMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Agora recebe o item exato que foi clicado como parâmetro
+    /// Recebe o item exato que foi clicado como parâmetro
     /// </summary>
     public void AbrirMenu(ItemClicavel itemClicado)
     {
@@ -33,7 +33,10 @@ public class GerenciadorDeMenu : MonoBehaviour
     {
         if (itemAtual != null)
         {
-            Debug.Log($"Você usou o item: {itemAtual.nomeDoItem}");
+            Debug.Log($"Você usou o item: {itemAtual.dadosDaCarta.nomeDaCarta}");
+
+            // Envia os dados da carta atual para o juiz da partida processar
+            GerenciadorDeBatalha.Instance.TentarUsarCarta(itemAtual.dadosDaCarta);
         }
         FecharMenu();
     }
@@ -42,7 +45,7 @@ public class GerenciadorDeMenu : MonoBehaviour
     {
         if (itemAtual != null)
         {
-            Debug.Log($"Descrição: {itemAtual.descricaoDoItem}");
+            Debug.Log($"Descrição: {itemAtual.dadosDaCarta.descricao}");
         }
     }
 }
