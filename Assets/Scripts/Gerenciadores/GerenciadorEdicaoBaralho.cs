@@ -82,11 +82,6 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
         // Redesenha a interface para refletir a mudança
         AtualizarTela();
     }
-    public void IrParaLootbox()
-    {
-        // Lembre-se de colocar o nome exato da sua cena da Lootbox aqui
-        SceneManager.LoadScene("CenaDaLootbox");
-    }
 
     private void AtualizarTextoScore()
     {
