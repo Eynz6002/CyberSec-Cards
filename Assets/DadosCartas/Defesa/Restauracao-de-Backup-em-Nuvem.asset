@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5bf52f3284f81faa867a22e385fe12, type: 3}
-  m_Name: Isolamento-em-Sandbox
+  m_Name: Restauracao-de-Backup-em-Nuvem
   m_EditorClassIdentifier: Assembly-CSharp::CartaDefesa
-  nomeDaCarta: Isolamento em Sandbox
-  descricao: Move os processos vitais do servidor para um ambiente isolado e criptografado,
-    mitigando severamente qualquer dano de vazamento.
+  nomeDaCarta: "Restaura\xE7\xE3o de Backup em Nuvem"
+  descricao: Recupera instantaneamente arquivos corrompidos a partir de um servidor
+    externo seguro, revertendo uma grande parte do tempo perdido para o hacker.
   arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  custoScore: 0
-  desbloqueadaPorPadrao: 1
+  custoScore: 3500
+  desbloqueadaPorPadrao: 0
   nivelAtual: 1
-  custoBaseUpgrade: 1000
-  pontosDeDefesa: 120
+  custoBaseUpgrade: 2000
+  pontosDeDefesa: 25

@@ -8,11 +8,12 @@ public class GerenciadorDeBaralho : MonoBehaviour
 
     [Header("Configuração do Baralho")]
     [Tooltip("Coloque exatamente 6 cartas para o ciclo funcionar perfeitamente.")]
-    [SerializeField] private List<CartaDados> cartasIniciais = new();
-
+    public InventarioDoJogador inventario;
     [Header("Cooldown Global")]
     [SerializeField] private float tempoCooldownMaximo = 2f;
     private float tempoCooldownAtual;
+
+    
 
     // --- A NOVA ESTRUTURA DO CICLO ---
     private List<CartaDados> maoDoJogador = new(3); // Os 3 quadrados brancos
@@ -56,13 +57,12 @@ public class GerenciadorDeBaralho : MonoBehaviour
 
     private void InicializarBaralho()
     {
-        if (cartasIniciais.Count != 6)
+        if (inventario.cartasNoBaralho.Count != 6)
         {
             Debug.LogWarning("O baralho deve ter exatamente 6 cartas!");
         }
 
-        // Cria uma cópia da lista e a embaralha
-        List<CartaDados> listaEmbaralhada = new(cartasIniciais);
+        List<CartaDados> listaEmbaralhada = new(inventario.cartasNoBaralho);
         Embaralhar(listaEmbaralhada);
 
         maoDoJogador.Clear();

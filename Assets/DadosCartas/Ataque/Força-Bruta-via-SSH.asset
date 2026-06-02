@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2d05b77eec5bf9ad9d52ec593a8f8ed, type: 3}
-  m_Name: Ping-of-Death-Reverso
+  m_Name: "For\xE7a-Bruta-via-SSH"
   m_EditorClassIdentifier: Assembly-CSharp::CartaAtaque
-  nomeDaCarta: Ping of Death Reverso
-  descricao: "Envia pacotes ICMP malformados de volta para o IP do atacante, causando
-    lentid\xE3o na m\xE1quina dele."
+  nomeDaCarta: "For\xE7a Bruta via SSH"
+  descricao: Executa milhares de tentativas de login por segundo no servidor de comando
+    do hacker, sobrecarregando o sistema e causando dano direto.
   arteDaCarta: {fileID: -6777963853341654856, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
   custoScore: 0
-  desbloqueadaPorPadrao: 0
+  desbloqueadaPorPadrao: 1
   nivelAtual: 1
-  custoBaseUpgrade: 2000
-  pontosDeAtaque: 60
+  custoBaseUpgrade: 500
+  pontosDeAtaque: 10

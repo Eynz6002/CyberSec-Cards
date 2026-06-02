@@ -16,4 +16,8 @@ MonoBehaviour:
   descricao: "Quebra os n\xF3s de proxy que o inimigo est\xE1 a usar para esconder
     o IP real e inunda a rede dele com tr\xE1fego lixo."
   arteDaCarta: {fileID: -6777963853341654856, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  pontosDeAtaque: 3
+  custoScore: 0
+  desbloqueadaPorPadrao: 1
+  nivelAtual: 1
+  custoBaseUpgrade: 1000
+  pontosDeAtaque: 20

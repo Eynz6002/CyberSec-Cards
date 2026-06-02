@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2d05b77eec5bf9ad9d52ec593a8f8ed, type: 3}
-  m_Name: Ping-of-Death-Reverso
+  m_Name: Interceptacao-Man-in-the-Middle
   m_EditorClassIdentifier: Assembly-CSharp::CartaAtaque
-  nomeDaCarta: Ping of Death Reverso
-  descricao: "Envia pacotes ICMP malformados de volta para o IP do atacante, causando
-    lentid\xE3o na m\xE1quina dele."
+  nomeDaCarta: "Intercepta\xE7\xE3o Man-in-the-Middle"
+  descricao: "Intercepta a comunica\xE7\xE3o do invasor e injeta pacotes de dados
+    corrompidos de volta na rede dele, sabotando a infraestrutura inimiga."
   arteDaCarta: {fileID: -6777963853341654856, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
   custoScore: 0
   desbloqueadaPorPadrao: 0
   nivelAtual: 1
-  custoBaseUpgrade: 2000
-  pontosDeAtaque: 60
+  custoBaseUpgrade: 1000
+  pontosDeAtaque: 30

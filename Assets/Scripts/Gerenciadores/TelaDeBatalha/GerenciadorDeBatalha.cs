@@ -113,12 +113,11 @@ public class GerenciadorDeBatalha : MonoBehaviour
         }
 
         // Carta de BLOQUEIO
-        if (carta is CartaBloqueio)
-        {
-            hackerController.BloquearPrimeiraAcao();
-
-            return;
-        }
+        //if (carta is CartaBloqueio)
+        //{
+        //    hackerController.BloquearPrimeiraAcao();
+        //    return;
+        //}
     }
 
     private void VencerOnda()
@@ -157,20 +156,21 @@ public class GerenciadorDeBatalha : MonoBehaviour
 
     private void SalvarScore()
     {
-        // Exemplo simples usando PlayerPrefs
-        // Pode ser trocado futuramente por Banco SQLite/API/etc.
+        // 1. Usa o padrão de 10000 para sincronizar com a loja e o baralho
+        int saldoAtual = PlayerPrefs.GetInt("MelhorScore", 10000);
 
-        int melhorScore =
-            PlayerPrefs.GetInt("MelhorScore", 0);
-
-        if (scoreTemporario > melhorScore)
-        {
-            PlayerPrefs.SetInt(
-                "MelhorScore",
-                scoreTemporario
-            );
-        }
-
+        // 2. Soma e salva
+        PlayerPrefs.SetInt("MelhorScore", saldoAtual + scoreTemporario);
         PlayerPrefs.Save();
+
+        // 3. ZERA o score temporário. 
+        // Isso evita que o dinheiro seja multiplicado por engano se a função for chamada duas vezes!
+        scoreTemporario = 0;
+    }
+    private void OnDestroy()
+    {
+        // Esta função roda sozinha sempre que a cena for fechada ou destruída.
+        // É a garantia de que o score será salvo não importa como você saia da batalha!
+        SalvarScore();
     }
 }
