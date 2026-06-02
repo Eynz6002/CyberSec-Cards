@@ -2996,13 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52e1bb404ea092a088e705ee9f34cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GerenciadorDeBaralho
-  cartasIniciais:
-  - {fileID: 11400000, guid: 7f58781f6d6761697aace668ac524812, type: 2}
-  - {fileID: 11400000, guid: 5a8d971218d0fc15cb327994cf6e224b, type: 2}
-  - {fileID: 11400000, guid: ac9e25d8d466fbb8f9f5d4616b420515, type: 2}
-  - {fileID: 11400000, guid: 23d889f4228def2d496e4f7cb12e5838, type: 2}
-  - {fileID: 11400000, guid: 2334343190b58b8e68321785d9d9358d, type: 2}
-  - {fileID: 11400000, guid: 1b0bcbb7b83e78b1c8d9f0aa2de31314, type: 2}
+  inventario: {fileID: 11400000, guid: c6dcfc9b86514dfbcb134455737b1167, type: 2}
   tempoCooldownMaximo: 1
 --- !u!1 &1624419967
 GameObject:

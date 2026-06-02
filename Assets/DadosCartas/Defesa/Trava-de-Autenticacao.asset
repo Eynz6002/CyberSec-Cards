@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5bf52f3284f81faa867a22e385fe12, type: 3}
-  m_Name: Isolamento-em-Sandbox
+  m_Name: Trava-de-Autenticacao
   m_EditorClassIdentifier: Assembly-CSharp::CartaDefesa
-  nomeDaCarta: Isolamento em Sandbox
-  descricao: Move os processos vitais do servidor para um ambiente isolado e criptografado,
-    mitigando severamente qualquer dano de vazamento.
+  nomeDaCarta: "Trava de Autentica\xE7\xE3o (MFA)"
+  descricao: "For\xE7a m\xFAltiplas camadas de verifica\xE7\xE3o repentinas nos terminais
+    comprometidos, atrasando drasticamente o avan\xE7o do script invasor."
   arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  custoScore: 0
-  desbloqueadaPorPadrao: 1
+  custoScore: 1500
+  desbloqueadaPorPadrao: 0
   nivelAtual: 1
   custoBaseUpgrade: 1000
-  pontosDeDefesa: 120
+  pontosDeDefesa: 12

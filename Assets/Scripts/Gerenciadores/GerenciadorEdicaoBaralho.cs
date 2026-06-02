@@ -12,20 +12,24 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
     public Transform conteudoDeposito;
 
     [Header("Dados Temporários (Para Teste)")]
-    [Tooltip("Arraste todas as cartas que o jogador possui para cá")]
-    public List<CartaDados> cartasDesbloqueadas = new();
-
-    [Tooltip("Cartas que começam equipadas")]
-    public List<CartaDados> cartasNoBaralho = new();
+    [Header("O 'Pendrive'")]
+    public InventarioDoJogador inventario;
 
     [Header("Score e UI")]
     public TextMeshProUGUI textoScore;
     private int scoreDoJogador;
 
+    [Header("Mini Tela de Descrição")]
+    public GameObject painelDescricao;
+    public TextMeshProUGUI textoNomeDescricao;
+    public TextMeshProUGUI textoDetalhesDescricao;
+    public TextMeshProUGUI textoStatusDescricao; // Para mostrar Dano ou Tempo
+
     private void Start()
     {
         // Puxa o score salvo do GerenciadorDeBatalha. Se não existir, começa com 10000 para teste.
-        scoreDoJogador = PlayerPrefs.GetInt("MelhorScore", 10000);
+        //PlayerPrefs.DeleteKey("MelhorScore");
+        scoreDoJogador = PlayerPrefs.GetInt("MelhorScore", 0);
         AtualizarTextoScore();
         AtualizarTela();
     }
@@ -40,17 +44,17 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
         foreach (Transform child in conteudoDeposito) Destroy(child.gameObject);
 
         // 2. Instancia as cartas na coluna do Baralho
-        foreach (CartaDados carta in cartasNoBaralho)
+        foreach (CartaDados carta in inventario.cartasNoBaralho)
         {
             CartaUI novaCarta = Instantiate(cartaUIPrefab, conteudoBaralho);
             novaCarta.ConfigurarCarta(carta, true, this);
         }
 
         // 3. Instancia as cartas na coluna do Depósito
-        foreach (CartaDados carta in cartasDesbloqueadas)
+        foreach (CartaDados carta in inventario.cartasDesbloqueadas)
         {
             // Só desenha no depósito se a carta NÃO estiver no baralho
-            if (!cartasNoBaralho.Contains(carta))
+            if (!inventario.cartasNoBaralho.Contains(carta))
             {
                 CartaUI novaCarta = Instantiate(cartaUIPrefab, conteudoDeposito);
                 novaCarta.ConfigurarCarta(carta, false, this);
@@ -65,18 +69,20 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
     {
         if (saindoDoBaralho)
         {
-            // Tira do baralho e devolve pro depósito
-            cartasNoBaralho.Remove(carta);
+            // Tira do baralho e garante que a carta esteja no depósito
+            inventario.cartasNoBaralho.Remove(carta);
+            if (!inventario.cartasDesbloqueadas.Contains(carta))
+                inventario.cartasDesbloqueadas.Add(carta);
         }
         else
         {
             // Tenta adicionar ao baralho (limite de 6 cartas)
-            if (cartasNoBaralho.Count >= 6)
+            if (inventario.cartasNoBaralho.Count >= 6)
             {
                 Debug.LogWarning("O baralho já está cheio! Remova uma carta primeiro.");
                 return; // Corta a execução, não adiciona
             }
-            cartasNoBaralho.Add(carta);
+            inventario.cartasNoBaralho.Add(carta);
         }
 
         // Redesenha a interface para refletir a mudança
@@ -100,28 +106,65 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
 
         if (scoreDoJogador >= custo)
         {
-            // 1. Cobra o valor
             scoreDoJogador -= custo;
-
-            // 2. Sobe o nível
             carta.nivelAtual++;
 
-            // DICA: Você pode aumentar os atributos reais da carta aqui no futuro!
-            // Exemplo: se for CartaAtaque, pontosDeAtaque += 5;
+            // --- LÓGICA DE AUMENTO DE STATUS AQUI ---
+            if (carta is CartaAtaque ataque)
+            {
+                // Exemplo: Ganha +5 de dano a cada nível
+                ataque.pontosDeAtaque += 5;
+            }
+            else if (carta is CartaDefesa defesa)
+            {
+                // Exemplo: Ganha +2 segundos de tempo extra a cada nível
+                defesa.pontosDeDefesa += 2;
+            }
+            // ----------------------------------------
 
-            // 3. Salva o novo saldo no PC do jogador
             PlayerPrefs.SetInt("MelhorScore", scoreDoJogador);
             PlayerPrefs.Save();
 
-            // 4. Atualiza a interface
             AtualizarTextoScore();
             AtualizarTela();
-
-            Debug.Log($"SUCESSO! {carta.nomeDaCarta} upou para o nível {carta.nivelAtual}!");
         }
         else
         {
             Debug.LogWarning("Score insuficiente para upar esta carta!");
         }
+    }
+    /// <summary>
+    /// Abre a mini tela e preenche com os dados da carta
+    /// </summary>
+    public void AbrirPainelDescricao(CartaDados carta)
+    {
+        // 1. Preenche os textos básicos
+        textoNomeDescricao.text = carta.nomeDaCarta;
+        textoDetalhesDescricao.text = carta.descricao;
+
+        // 2. Descobre de qual tipo é a carta para mostrar o status correto
+        if (carta is CartaAtaque ataque)
+        {
+            textoStatusDescricao.text = $"Dano Base: {ataque.pontosDeAtaque}";
+        }
+        else if (carta is CartaDefesa defesa)
+        {
+            textoStatusDescricao.text = $"Tempo Extra: {defesa.pontosDeDefesa}s";
+        }
+        else
+        {
+            textoStatusDescricao.text = "";
+        }
+
+        // 3. Mostra a tela
+        painelDescricao.SetActive(true);
+    }
+
+    /// <summary>
+    /// Esconde a mini tela
+    /// </summary>
+    public void FecharPainelDescricao()
+    {
+        painelDescricao.SetActive(false);
     }
 }

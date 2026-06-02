@@ -73,8 +73,7 @@ public class CartaUI : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Descrição: {dadosAtuais.descricao}");
-            // Lógica futura para abrir um painel de detalhes
+            gerenciador.AbrirPainelDescricao(dadosAtuais);
         }
     }
 }

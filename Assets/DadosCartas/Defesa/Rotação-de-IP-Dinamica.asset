@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5bf52f3284f81faa867a22e385fe12, type: 3}
-  m_Name: Isolamento-em-Sandbox
+  m_Name: "Rota\xE7\xE3o-de-IP-Dinamica"
   m_EditorClassIdentifier: Assembly-CSharp::CartaDefesa
-  nomeDaCarta: Isolamento em Sandbox
-  descricao: Move os processos vitais do servidor para um ambiente isolado e criptografado,
-    mitigando severamente qualquer dano de vazamento.
+  nomeDaCarta: "Rota\xE7\xE3o de IP Din\xE2mica"
+  descricao: "Altera rapidamente os endere\xE7os IP da sua rede interna, quebrando
+    a conex\xE3o do invasor e comprando tempo precioso."
   arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
   custoScore: 0
   desbloqueadaPorPadrao: 1
   nivelAtual: 1
-  custoBaseUpgrade: 1000
-  pontosDeDefesa: 120
+  custoBaseUpgrade: 500
+  pontosDeDefesa: 300

@@ -16,4 +16,8 @@ MonoBehaviour:
   descricao: "Insere comandos SQL maliciosos no servidor de Comando e Controle (C&C)
     do hacker para corromper as suas ferramentas de invas\xE3o."
   arteDaCarta: {fileID: -6777963853341654856, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
-  pontosDeAtaque: 2
+  custoScore: 0
+  desbloqueadaPorPadrao: 0
+  nivelAtual: 1
+  custoBaseUpgrade: 1000
+  pontosDeAtaque: 40
