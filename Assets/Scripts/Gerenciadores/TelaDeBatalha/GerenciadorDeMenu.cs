@@ -1,22 +1,25 @@
 using UnityEngine;
+using TMPro;
 
 public class GerenciadorDeMenu : MonoBehaviour
 {
-    [Header("Interface")]
-    public GameObject painelMenu;
+    public static GerenciadorDeMenu Instancia;
 
+    [Header("Menu de Ações da Carta")]
+    public GameObject painelMenu; // Aquele com Usar/Descrição/Cancelar
     private ItemClicavel itemAtual;
 
-    public static GerenciadorDeMenu Instancia;
+    [Header("Painel de Descrição (Pop-up)")]
+    public GameObject painelDescricao;
+    public TextMeshProUGUI textoNomeDescricao;
+    public TextMeshProUGUI textoDetalhesDescricao;
+    public TextMeshProUGUI textoStatusDescricao;
 
     void Awake()
     {
         Instancia = this;
     }
 
-    /// <summary>
-    /// Recebe o item exato que foi clicado como parâmetro
-    /// </summary>
     public void AbrirMenu(ItemClicavel itemClicado)
     {
         itemAtual = itemClicado;
@@ -33,9 +36,6 @@ public class GerenciadorDeMenu : MonoBehaviour
     {
         if (itemAtual != null)
         {
-            Debug.Log($"Você usou o item: {itemAtual.dadosDaCarta.nomeDaCarta}");
-
-            // Envia os dados da carta atual para o juiz da partida processar
             GerenciadorDeBatalha.Instance.TentarUsarCarta(itemAtual.dadosDaCarta);
         }
         FecharMenu();
@@ -43,9 +43,33 @@ public class GerenciadorDeMenu : MonoBehaviour
 
     public void AcaoDescricao()
     {
-        if (itemAtual != null)
+        if (itemAtual != null && painelDescricao != null)
         {
-            Debug.Log($"Descrição: {itemAtual.dadosDaCarta.descricao}");
+            CartaDados carta = itemAtual.dadosDaCarta;
+
+            // Preenche os textos
+            if (textoNomeDescricao) textoNomeDescricao.text = carta.nomeDaCarta;
+            if (textoDetalhesDescricao) textoDetalhesDescricao.text = carta.descricao;
+
+            if (textoStatusDescricao)
+            {
+                if (carta is CartaAtaque ataque)
+                    textoStatusDescricao.text = $"Dano Base: {ataque.pontosDeAtaque}";
+                else if (carta is CartaDefesa defesa)
+                    textoStatusDescricao.text = $"Tempo Extra: +{defesa.pontosDeDefesa}s";
+            }
+
+            // Abre o painel, fecha o menu menor e PAUSA O JOGO
+            painelDescricao.SetActive(true);
+            FecharMenu();
+            Time.timeScale = 0f;
         }
+    }
+
+    public void FecharPainelDescricao()
+    {
+        // Fecha o painel e DESPAUSA O JOGO
+        painelDescricao.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

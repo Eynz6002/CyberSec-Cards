@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GerenciadorDeBatalha : MonoBehaviour
 {
     public static GerenciadorDeBatalha Instance;
+    public int OndaAtual => ondaAtual;
 
     public enum EstadoDaBatalha
     {

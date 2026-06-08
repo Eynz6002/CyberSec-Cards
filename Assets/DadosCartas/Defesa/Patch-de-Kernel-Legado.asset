@@ -18,4 +18,6 @@ MonoBehaviour:
   arteDaCarta: {fileID: 8728560256366460170, guid: 93d537b78190ef14fb650127f7e6a5b4, type: 3}
   custoScore: 0
   desbloqueadaPorPadrao: 0
-  pontosDeDefesa: 3
+  nivelAtual: 1
+  custoBaseUpgrade: 1000
+  pontosDeDefesa: 10

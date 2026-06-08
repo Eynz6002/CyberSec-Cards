@@ -13,7 +13,7 @@ public class GerenciadorDeBaralho : MonoBehaviour
     [SerializeField] private float tempoCooldownMaximo = 2f;
     private float tempoCooldownAtual;
 
-    
+
 
     // --- A NOVA ESTRUTURA DO CICLO ---
     private List<CartaDados> maoDoJogador = new(3); // Os 3 quadrados brancos
@@ -57,9 +57,9 @@ public class GerenciadorDeBaralho : MonoBehaviour
 
     private void InicializarBaralho()
     {
-        if (inventario.cartasNoBaralho.Count != 6)
+        if (inventario.cartasNoBaralho.Count > 6)
         {
-            Debug.LogWarning("O baralho deve ter exatamente 6 cartas!");
+            Debug.LogWarning("O baralho deve ter no máximo 6 cartas!");
         }
 
         List<CartaDados> listaEmbaralhada = new(inventario.cartasNoBaralho);

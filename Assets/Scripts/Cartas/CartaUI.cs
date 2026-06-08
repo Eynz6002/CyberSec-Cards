@@ -4,76 +4,87 @@ using UnityEngine.UI;
 
 public class CartaUI : MonoBehaviour
 {
-    [Header("Referências de UI")]
+    [Header("Textos da Carta")]
     public TextMeshProUGUI textoNome;
-    public TextMeshProUGUI textoBotaoTransferir;
-    public TextMeshProUGUI textoBotaoStatus;
+    public TextMeshProUGUI textoDescricao;
+    public TextMeshProUGUI textoNivel;        // Onde fica o "00"
+    public TextMeshProUGUI textoStatus;       // Onde fica o "Dano ou + segundo"
+    public TextMeshProUGUI textoCustoUpgrade; // Onde fica o valor numérico do custo
 
     [Header("Botões")]
     public Button botaoTransferir;
-    public Button botaoStatus;
+    public TextMeshProUGUI textoBotaoTransferir; // Para mudar entre "+" e "-"
+
+    public Button botaoUpgrade;
 
     // Memória interna da carta
     private CartaDados dadosAtuais;
     private bool estaNoBaralho;
-
-    // Referência ao gerenciador central (será injetada pelo código futuramente)
     private GerenciadorEdicaoBaralho gerenciador;
 
-    /// <summary>
-    /// Função chamada pelo Gerenciador Central para injetar os dados nesta carta.
-    /// </summary>
     public void ConfigurarCarta(CartaDados dados, bool noBaralho, GerenciadorEdicaoBaralho ger)
     {
         dadosAtuais = dados;
         estaNoBaralho = noBaralho;
         gerenciador = ger;
 
-        // Atualiza o texto principal com o nome do ScriptableObject
-        if (textoNome != null)
-            textoNome.text = dadosAtuais.nomeDaCarta;
+        // 1. Preenche os Textos Básicos
+        if (textoNome != null) textoNome.text = dadosAtuais.nomeDaCarta;
+        if (textoDescricao != null) textoDescricao.text = dadosAtuais.descricao;
 
-        // Altera o comportamento visual dependendo de onde a carta está
-        // Altera o comportamento visual dependendo de onde a carta está
+        // Formata o nível para ter sempre dois dígitos (ex: "01", "02", "10")
+        if (textoNivel != null) textoNivel.text = dadosAtuais.nivelAtual.ToString("D2");
+
+        // Preenche o valor do custo
+        if (textoCustoUpgrade != null) textoCustoUpgrade.text = dadosAtuais.CustoAtual.ToString();
+
+        // 2. Identifica o tipo de carta para preencher o Status (Dano ou Tempo)
+        if (textoStatus != null)
+        {
+            if (dadosAtuais is CartaAtaque ataque)
+            {
+                textoStatus.text = $"Dano Base: {ataque.pontosDeAtaque}";
+            }
+            else if (dadosAtuais is CartaDefesa defesa)
+            {
+                textoStatus.text = $"Tempo Extra: +{defesa.pontosDeDefesa}s";
+            }
+        }
+
+        // 3. Configura o visual do botão de transferência (+ ou -)
         if (estaNoBaralho)
         {
-            textoBotaoTransferir.text = "Remover";
-            // NOVIDADE: Mostra o custo no botão!
-            textoBotaoStatus.text = $"+ Nível ({dadosAtuais.CustoAtual})";
+            textoBotaoTransferir.text = "-";
         }
         else
         {
-            textoBotaoTransferir.text = "Adicionar";
-            textoBotaoStatus.text = "Descrição";
+            textoBotaoTransferir.text = "+";
         }
 
-        // Configura os botões via código (evita ter de arrastar coisas no Inspector)
+        // 4. Limpa e recria as ações dos botões
         botaoTransferir.onClick.RemoveAllListeners();
         botaoTransferir.onClick.AddListener(AoClicarTransferir);
 
-        botaoStatus.onClick.RemoveAllListeners();
-        botaoStatus.onClick.AddListener(AoClicarStatus);
+        if (botaoUpgrade != null)
+        {
+            botaoUpgrade.onClick.RemoveAllListeners();
+            botaoUpgrade.onClick.AddListener(AoClicarUpgrade);
+        }
     }
 
     private void AoClicarTransferir()
     {
         if (gerenciador != null)
         {
-            // Avisa o gerente: "Fui clicada! Fila para transferir."
             gerenciador.TransferirCarta(dadosAtuais, estaNoBaralho);
         }
     }
 
-    private void AoClicarStatus()
+    private void AoClicarUpgrade()
     {
-        if (estaNoBaralho)
+        if (gerenciador != null)
         {
-            // Substituímos o Debug.Log por esta linha:
             gerenciador.TentarUparCarta(dadosAtuais);
-        }
-        else
-        {
-            gerenciador.AbrirPainelDescricao(dadosAtuais);
         }
     }
 }
