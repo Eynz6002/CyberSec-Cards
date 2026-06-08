@@ -20,4 +20,4 @@ MonoBehaviour:
   desbloqueadaPorPadrao: 0
   nivelAtual: 1
   custoBaseUpgrade: 2000
-  pontosDeDefesa: 25
+  pontosDeDefesa: 30
