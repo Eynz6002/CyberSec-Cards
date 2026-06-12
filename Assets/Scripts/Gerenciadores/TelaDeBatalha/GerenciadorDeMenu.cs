@@ -15,6 +15,9 @@ public class GerenciadorDeMenu : MonoBehaviour
     public TextMeshProUGUI textoDetalhesDescricao;
     public TextMeshProUGUI textoStatusDescricao;
 
+    [Header("Elementos para Esconder ao Pausar")]
+    public GameObject hudDeBatalha; // Arraste o objeto que junta os elementos do jogo (Sliders, etc.)
+
     void Awake()
     {
         Instancia = this;
@@ -59,17 +62,27 @@ public class GerenciadorDeMenu : MonoBehaviour
                     textoStatusDescricao.text = $"Tempo Extra: +{defesa.pontosDeDefesa}s";
             }
 
-            // Abre o painel, fecha o menu menor e PAUSA O JOGO
+            // Abre o painel e fecha o menu menor
             painelDescricao.SetActive(true);
             FecharMenu();
+
+            // NOVIDADE: Desativa o HUD de jogo (Esconde os Sliders e Textos da tela)
+            if (hudDeBatalha != null) hudDeBatalha.SetActive(false);
+
+            // PAUSA O JOGO
             Time.timeScale = 0f;
         }
     }
 
     public void FecharPainelDescricao()
     {
-        // Fecha o painel e DESPAUSA O JOGO
+        // Fecha o painel
         painelDescricao.SetActive(false);
+
+        // NOVIDADE: Reativa o HUD de jogo ao voltar
+        if (hudDeBatalha != null) hudDeBatalha.SetActive(true);
+
+        // DESPAUSA O JOGO
         Time.timeScale = 1f;
     }
 }
