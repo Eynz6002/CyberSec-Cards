@@ -19,11 +19,11 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
     public TextMeshProUGUI textoScore;
     private int scoreDoJogador;
 
-    [Header("Mini Tela de Descrição")]
-    public GameObject painelDescricao;
-    public TextMeshProUGUI textoNomeDescricao;
-    public TextMeshProUGUI textoDetalhesDescricao;
-    public TextMeshProUGUI textoStatusDescricao; // Para mostrar Dano ou Tempo
+    //[Header("Mini Tela de Descrição")]
+    //public GameObject painelDescricao;
+    //public TextMeshProUGUI textoNomeDescricao;
+    //public TextMeshProUGUI textoDetalhesDescricao;
+    //public TextMeshProUGUI textoStatusDescricao; // Para mostrar Dano ou Tempo
 
     private void Start()
     {
@@ -136,35 +136,35 @@ public class GerenciadorEdicaoBaralho : MonoBehaviour
     /// <summary>
     /// Abre a mini tela e preenche com os dados da carta
     /// </summary>
-    public void AbrirPainelDescricao(CartaDados carta)
-    {
-        // 1. Preenche os textos básicos
-        textoNomeDescricao.text = carta.nomeDaCarta;
-        textoDetalhesDescricao.text = carta.descricao;
-
-        // 2. Descobre de qual tipo é a carta para mostrar o status correto
-        if (carta is CartaAtaque ataque)
-        {
-            textoStatusDescricao.text = $"Dano Base: {ataque.pontosDeAtaque}";
-        }
-        else if (carta is CartaDefesa defesa)
-        {
-            textoStatusDescricao.text = $"Tempo Extra: {defesa.pontosDeDefesa}s";
-        }
-        else
-        {
-            textoStatusDescricao.text = "";
-        }
-
-        // 3. Mostra a tela
-        painelDescricao.SetActive(true);
-    }
+    //public void AbrirPainelDescricao(CartaDados carta)
+    //{
+    //    // 1. Preenche os textos básicos
+    //    textoNomeDescricao.text = carta.nomeDaCarta;
+    //    textoDetalhesDescricao.text = carta.descricao;
+    //
+    //    // 2. Descobre de qual tipo é a carta para mostrar o status correto
+    //    if (carta is CartaAtaque ataque)
+    //    {
+    //        textoStatusDescricao.text = $"Dano Base: {ataque.pontosDeAtaque}";
+    //    }
+    //    else if (carta is CartaDefesa defesa)
+    //    {
+    //        textoStatusDescricao.text = $"Tempo Extra: {defesa.pontosDeDefesa}s";
+    //    }
+    //    else
+    //    {
+    //        textoStatusDescricao.text = "";
+    //    }
+    //
+    //    // 3. Mostra a tela
+    //    painelDescricao.SetActive(true);
+    //}
 
     /// <summary>
     /// Esconde a mini tela
     /// </summary>
-    public void FecharPainelDescricao()
-    {
-        painelDescricao.SetActive(false);
-    }
+    //public void FecharPainelDescricao()
+    //{
+    //    painelDescricao.SetActive(false);
+    //}
 }

@@ -47,7 +47,7 @@ public class GerenciadorDeUIBatalha : MonoBehaviour
             if (textoTempo != null)
             {
                 textoTempo.text = $"{tempoRestante:F1}s";
-                textoTempo.color = tempoRestante <= 4f ? Color.red : Color.black;
+                textoTempo.color = tempoRestante <= 4f ? Color.red : Color.white;
             }
 
             // Exibe um aviso no quadrado vermelho

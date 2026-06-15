@@ -93,25 +93,27 @@ public class GerenciadorDeBatalha : MonoBehaviour
             hackerController.ReceberDano(cartaAtaque.pontosDeAtaque);
             scoreTemporario += cartaAtaque.pontosDeAtaque;
 
-            // Envia para o Log da tela
             if (GerenciadorDeUIBatalha.Instancia != null)
-            {
                 GerenciadorDeUIBatalha.Instancia.EscreverNoLog($"Você usou {carta.nomeDaCarta}! Causou {cartaAtaque.pontosDeAtaque} de dano.");
-            }
+
+            // TOCA O SOM DE ATAQUE AQUI!
+            if (GerenciadorDeAudio.Instancia != null)
+                GerenciadorDeAudio.Instancia.TocarSFX(GerenciadorDeAudio.Instancia.somAtaque);
 
             return;
         }
 
-        // Carta de DEFESA (tempo extra)
+        // Carta de DEFESA
         if (carta is CartaDefesa cartaDefesa)
         {
             hackerController.AdicionarTempo(cartaDefesa.pontosDeDefesa);
 
-            // Envia para o Log da tela
             if (GerenciadorDeUIBatalha.Instancia != null)
-            {
                 GerenciadorDeUIBatalha.Instancia.EscreverNoLog($"Você usou {carta.nomeDaCarta}! Ganhou +{cartaDefesa.pontosDeDefesa}s de estabilidade.");
-            }
+
+            // TOCA O SOM DE DEFESA AQUI!
+            if (GerenciadorDeAudio.Instancia != null)
+                GerenciadorDeAudio.Instancia.TocarSFX(GerenciadorDeAudio.Instancia.somDefesa);
 
             return;
         }

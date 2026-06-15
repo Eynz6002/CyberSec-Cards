@@ -8,14 +8,14 @@ public class CartaUI : MonoBehaviour
     public TextMeshProUGUI textoNome;
     public TextMeshProUGUI textoDescricao;
     public TextMeshProUGUI textoNivel;        // Onde fica o "00"
-    public TextMeshProUGUI textoStatus;       // Onde fica o "Dano ou + segundo"
-    public TextMeshProUGUI textoCustoUpgrade; // Onde fica o valor numérico do custo
+    public TextMeshProUGUI textoStatus;       // Agora mostrará "⚔ 10" ou "⏳ +5s"
 
     [Header("Botões")]
     public Button botaoTransferir;
-    public TextMeshProUGUI textoBotaoTransferir; // Para mudar entre "+" e "-"
+    public TextMeshProUGUI textoBotaoTransferir;
 
     public Button botaoUpgrade;
+    public TextMeshProUGUI textoBotaoUpgrade; // NOVO: O texto que fica DENTRO do botão de nível
 
     // Memória interna da carta
     private CartaDados dadosAtuais;
@@ -31,37 +31,38 @@ public class CartaUI : MonoBehaviour
         // 1. Preenche os Textos Básicos
         if (textoNome != null) textoNome.text = dadosAtuais.nomeDaCarta;
         if (textoDescricao != null) textoDescricao.text = dadosAtuais.descricao;
+        if (textoNivel != null) textoNivel.text = new string('+', dadosAtuais.nivelAtual);
 
-        // Formata o nível para ter sempre dois dígitos (ex: "01", "02", "10")
-        if (textoNivel != null) textoNivel.text = dadosAtuais.nivelAtual.ToString("D2");
-
-        // Preenche o valor do custo
-        if (textoCustoUpgrade != null) textoCustoUpgrade.text = dadosAtuais.CustoAtual.ToString();
-
-        // 2. Identifica o tipo de carta para preencher o Status (Dano ou Tempo)
+        // 2. Status com ícones Unicode para poupar muito espaço na leitura visual
         if (textoStatus != null)
         {
             if (dadosAtuais is CartaAtaque ataque)
             {
-                textoStatus.text = $"Dano Base: {ataque.pontosDeAtaque}";
+                textoStatus.text = $"Dano: {ataque.pontosDeAtaque}";
             }
             else if (dadosAtuais is CartaDefesa defesa)
             {
-                textoStatus.text = $"Tempo Extra: +{defesa.pontosDeDefesa}s";
+                textoStatus.text = $"Bonus: +{defesa.pontosDeDefesa}s";
             }
         }
 
-        // 3. Configura o visual do botão de transferência (+ ou -)
+        // 3. Juntando a informação: O botão de nível agora avisa o preço
+        if (textoBotaoUpgrade != null)
+        {
+            textoBotaoUpgrade.text = $"Aumentar Nível ({dadosAtuais.CustoAtual})";
+        }
+
+        // 4. Configura o visual do botão de transferência
         if (estaNoBaralho)
         {
-            textoBotaoTransferir.text = "-";
+            textoBotaoTransferir.text = "Remover";
         }
         else
         {
-            textoBotaoTransferir.text = "+";
+            textoBotaoTransferir.text = "Adicionar";
         }
 
-        // 4. Limpa e recria as ações dos botões
+        // 5. Limpa e recria as ações dos botões
         botaoTransferir.onClick.RemoveAllListeners();
         botaoTransferir.onClick.AddListener(AoClicarTransferir);
 
@@ -74,17 +75,11 @@ public class CartaUI : MonoBehaviour
 
     private void AoClicarTransferir()
     {
-        if (gerenciador != null)
-        {
-            gerenciador.TransferirCarta(dadosAtuais, estaNoBaralho);
-        }
+        if (gerenciador != null) gerenciador.TransferirCarta(dadosAtuais, estaNoBaralho);
     }
 
     private void AoClicarUpgrade()
     {
-        if (gerenciador != null)
-        {
-            gerenciador.TentarUparCarta(dadosAtuais);
-        }
+        if (gerenciador != null) gerenciador.TentarUparCarta(dadosAtuais);
     }
 }
