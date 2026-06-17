@@ -164,7 +164,7 @@ public class GerenciadorDeBatalha : MonoBehaviour
     private void SalvarScore()
     {
         // 1. Usa o padrão de 10000 para sincronizar com a loja e o baralho
-        int saldoAtual = PlayerPrefs.GetInt("MelhorScore", 10000);
+        int saldoAtual = PlayerPrefs.GetInt("MelhorScore", 0);
 
         // 2. Soma e salva
         PlayerPrefs.SetInt("MelhorScore", saldoAtual + scoreTemporario);
