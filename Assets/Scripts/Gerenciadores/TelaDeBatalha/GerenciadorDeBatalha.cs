@@ -28,6 +28,7 @@ public class GerenciadorDeBatalha : MonoBehaviour
     [SerializeField] private GerenciadorDeBaralho gerenciadorDeBaralho;
 
     public int ScoreTemporario => scoreTemporario;
+
     private void Awake()
     {
         // Singleton
@@ -49,23 +50,19 @@ public class GerenciadorDeBatalha : MonoBehaviour
     private void OnEnable()
     {
         hackerController.OnHitKill += GameOver;
-
         hackerController.OnHackerDerrotado += VencerOnda;
     }
 
     private void OnDisable()
     {
         hackerController.OnHitKill -= GameOver;
-
         hackerController.OnHackerDerrotado -= VencerOnda;
     }
 
     private void IniciarPartida()
     {
         estadoAtual = EstadoDaBatalha.Configurando;
-
         hackerController.InicializarHacker(ondaAtual);
-
         estadoAtual = EstadoDaBatalha.EmCombate;
     }
 
@@ -85,7 +82,6 @@ public class GerenciadorDeBatalha : MonoBehaviour
         }
 
         ResolverCarta(carta);
-
         gerenciadorDeBaralho.UsarCarta(carta);
     }
 
@@ -94,47 +90,53 @@ public class GerenciadorDeBatalha : MonoBehaviour
         // Carta de ATAQUE
         if (carta is CartaAtaque cartaAtaque)
         {
-            hackerController.ReceberDano(
-                cartaAtaque.pontosDeAtaque
-            );
-
+            hackerController.ReceberDano(cartaAtaque.pontosDeAtaque);
             scoreTemporario += cartaAtaque.pontosDeAtaque;
 
+            if (GerenciadorDeUIBatalha.Instancia != null)
+                GerenciadorDeUIBatalha.Instancia.EscreverNoLog($"Você usou {carta.nomeDaCarta}! Causou {cartaAtaque.pontosDeAtaque} de dano.");
+
+            // TOCA O SOM DE ATAQUE AQUI!
+            if (GerenciadorDeAudio.Instancia != null)
+                GerenciadorDeAudio.Instancia.TocarSFX(GerenciadorDeAudio.Instancia.somAtaque);
+
             return;
         }
 
-        // Carta de DEFESA (tempo extra)
+        // Carta de DEFESA
         if (carta is CartaDefesa cartaDefesa)
         {
-            hackerController.AdicionarTempo(
-                cartaDefesa.pontosDeDefesa
-            );
+            hackerController.AdicionarTempo(cartaDefesa.pontosDeDefesa);
+
+            if (GerenciadorDeUIBatalha.Instancia != null)
+                GerenciadorDeUIBatalha.Instancia.EscreverNoLog($"Você usou {carta.nomeDaCarta}! Ganhou +{cartaDefesa.pontosDeDefesa}s de estabilidade.");
+
+            // TOCA O SOM DE DEFESA AQUI!
+            if (GerenciadorDeAudio.Instancia != null)
+                GerenciadorDeAudio.Instancia.TocarSFX(GerenciadorDeAudio.Instancia.somDefesa);
 
             return;
         }
-
-        // Carta de BLOQUEIO
-        //if (carta is CartaBloqueio)
-        //{
-        //    hackerController.BloquearPrimeiraAcao();
-        //    return;
-        //}
     }
 
     private void VencerOnda()
     {
         estadoAtual = EstadoDaBatalha.VitoriaDaOnda;
-
         ondaAtual++;
 
         // Recompensa simples de score
         scoreTemporario += 100 * ondaAtual;
 
+        // Envia para o Log da tela
+        if (GerenciadorDeUIBatalha.Instancia != null)
+        {
+            GerenciadorDeUIBatalha.Instancia.EscreverNoLog($"Hacker derrotado! Inicializando Onda {ondaAtual}...");
+        }
+
         Debug.Log($"Onda {ondaAtual - 1} concluída!");
 
         // Gera novo inimigo com dificuldade maior
         hackerController.InicializarHacker(ondaAtual);
-
         estadoAtual = EstadoDaBatalha.EmCombate;
     }
 
@@ -142,15 +144,19 @@ public class GerenciadorDeBatalha : MonoBehaviour
     {
         estadoAtual = EstadoDaBatalha.GameOver;
 
-        Debug.Log("HITKILL - Game Over");
+        // Envia para o Log da tela
+        if (GerenciadorDeUIBatalha.Instancia != null)
+        {
+            GerenciadorDeUIBatalha.Instancia.EscreverNoLog("Acesso negado: O Hacker conseguiu invadir o sistema!");
+        }
 
+        Debug.Log("HITKILL - Game Over");
         SalvarScore();
     }
 
     public void SairDaPartida()
     {
         SalvarScore();
-
         // Carrega Menu Principal/Loja
         SceneManager.LoadScene("MenuPrincipal");
     }
@@ -168,6 +174,7 @@ public class GerenciadorDeBatalha : MonoBehaviour
         // Isso evita que o dinheiro seja multiplicado por engano se a função for chamada duas vezes!
         scoreTemporario = 0;
     }
+
     private void OnDestroy()
     {
         // Esta função roda sozinha sempre que a cena for fechada ou destruída.

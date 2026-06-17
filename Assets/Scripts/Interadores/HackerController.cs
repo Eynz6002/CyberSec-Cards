@@ -13,16 +13,16 @@ public class HackerController : MonoBehaviour
     }
 
     [Header("Status do Hacker")]
-    [SerializeField] private int hpAtual;
+    // Variáveis renomeadas para se conectarem perfeitamente com o script de UI
+    public int vidaAtual;
+    public int vidaMaxima;
 
     [SerializeField] private float temporizadorInvasao;
 
     [Header("Fila de Intenções")]
     [SerializeField] private List<TipoDeAcao> intencoesVisiveis = new();
-
     private Queue<TipoDeAcao> filaDeIntencoes = new();
 
-    public int HpAtual => hpAtual;
     public float TemporizadorInvasao => temporizadorInvasao;
 
     public event Action OnHitKill;
@@ -35,14 +35,15 @@ public class HackerController : MonoBehaviour
 
     public void InicializarHacker(int ondaAtual)
     {
-        // Escala simples de dificuldade
-        hpAtual = 50 + (ondaAtual * 20);
+        // Define a vida máxima baseada na onda, e enche a vida atual
+        vidaMaxima = 50 + (ondaAtual * 20);
+        vidaAtual = vidaMaxima;
 
         temporizadorInvasao = Mathf.Max(10f - (ondaAtual * 0.5f), 3f);
 
         GerarFilaDeIntencoes();
 
-        Debug.Log($"Hacker Inicializado | HP: {hpAtual}");
+        Debug.Log($"Hacker Inicializado | HP Máximo: {vidaMaxima}");
     }
 
     private void AtualizarTemporizador()
@@ -50,24 +51,21 @@ public class HackerController : MonoBehaviour
         // Contagem regressiva principal
         temporizadorInvasao -= Time.deltaTime;
 
-        // HITKILL:
-        // Se chegar a zero -> Game Over instantâneo
+        // HITKILL: Se chegar a zero -> Game Over instantâneo
         if (temporizadorInvasao <= 0f)
         {
             temporizadorInvasao = 0f;
-
             OnHitKill?.Invoke();
         }
     }
 
     public void ReceberDano(int dano)
     {
-        hpAtual -= dano;
+        vidaAtual -= dano;
 
-        if (hpAtual <= 0)
+        if (vidaAtual <= 0)
         {
-            hpAtual = 0;
-
+            vidaAtual = 0;
             OnHackerDerrotado?.Invoke();
         }
     }
@@ -77,27 +75,14 @@ public class HackerController : MonoBehaviour
         temporizadorInvasao += segundos;
     }
 
-    public void BloquearPrimeiraAcao()
-    {
-        if (filaDeIntencoes.Count <= 0)
-            return;
-
-        filaDeIntencoes.Dequeue();
-
-        AtualizarListaVisual();
-    }
-
     private void GerarFilaDeIntencoes()
     {
         filaDeIntencoes.Clear();
-
         intencoesVisiveis.Clear();
 
         for (int i = 0; i < 5; i++)
         {
-            TipoDeAcao acaoAleatoria =
-                (TipoDeAcao)UnityEngine.Random.Range(0, 4);
-
+            TipoDeAcao acaoAleatoria = (TipoDeAcao)UnityEngine.Random.Range(0, 4);
             filaDeIntencoes.Enqueue(acaoAleatoria);
         }
 
