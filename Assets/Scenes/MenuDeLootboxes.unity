@@ -153,16 +153,13 @@ MonoBehaviour:
   custoLootbox: 1000
   todasAsCartasDoJogo:
   - {fileID: 11400000, guid: a524d99903823aa3a9a9898be747e35d, type: 2}
-  - {fileID: 11400000, guid: ad573cc9e77af24fc9aac1a4c1c6fe98, type: 2}
   - {fileID: 11400000, guid: 50af4658cd69cb476b25cda8880373bf, type: 2}
   - {fileID: 11400000, guid: 7f58781f6d6761697aace668ac524812, type: 2}
   - {fileID: 11400000, guid: 2130c437e42bee178b1d86d00e1c9b73, type: 2}
   - {fileID: 11400000, guid: 5bf8ef9d10fcdd1c7bd6be0a0cbf099c, type: 2}
   - {fileID: 11400000, guid: 23d889f4228def2d496e4f7cb12e5838, type: 2}
-  - {fileID: 11400000, guid: 2334343190b58b8e68321785d9d9358d, type: 2}
   - {fileID: 11400000, guid: 1b0bcbb7b83e78b1c8d9f0aa2de31314, type: 2}
   - {fileID: 11400000, guid: 3a816d99a0a49548399388e4f441b5a9, type: 2}
-  - {fileID: 11400000, guid: e2ff2e75a27b1691994ce24972d6b994, type: 2}
   - {fileID: 11400000, guid: 433e632ebed0a248a861f4412382c736, type: 2}
   inventario: {fileID: 11400000, guid: c6dcfc9b86514dfbcb134455737b1167, type: 2}
 --- !u!4 &168736012
